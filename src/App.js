@@ -1,10 +1,10 @@
-import logo from './logo.svg';
 import './App.css';
-
+import Route from './router';
 function App() {
   return (
-    <h1> Hello ApiLogicServer</h1>
-
+    <>
+<Route/>   
+ </>
   );
 }
 
