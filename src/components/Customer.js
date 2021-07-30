@@ -1,31 +1,34 @@
 import {React} from 'react';
-import { List, Datagrid, TextField, EmailField, ReferenceField, NumberField, EditButton} from 'react-admin';
+import { List, Datagrid, TextField, DateField, ReferenceField, NumberField, EditButton} from 'react-admin';
 import {
 
     Edit,
+    Show,
     SimpleForm,
     ReferenceInput,
     SelectInput,
     TextInput,
     DateInput,
-    NumberInput
+    NumberInput,
+    SimpleShowLayout,
+    ReferenceManyField
 } from 'react-admin';
+import Grid from '@material-ui/core/Grid';
 
+
+  
 const customerFilters = [
     <TextInput source="q" label="Search" alwaysOn />
 ];
 
+
 export const CustomerList = props => (
     <List filters={customerFilters} perPage={10}  {...props} >
-        <Datagrid rowClick="edit">
+        <Datagrid expand={<CustomerShow />} rowClick="show">
             
         <TextField source="CompanyName" />
             <TextField source="ContactName" />
-            <TextField source="ContactTitle" />
-            <NumberField source="Balance" />
-           
             <TextField source="Phone" />
-            <TextField source="Region" />
             <EditButton />
 
         </Datagrid>
@@ -56,3 +59,53 @@ export const CustomerEdit = props => (
         </SimpleForm>
     </Edit>
 );
+const CustomerTitle = ({ record }) => {
+    return <span>Post {record ? `ID: "${record.id}" ContactName: "${record.ContactName}"` : ''}</span>;
+};
+
+export const CustomerShow = props => { 
+
+    return (
+
+    <Show title={<CustomerTitle />} {...props}>
+        <SimpleShowLayout>
+            <TextField source="id" /> 
+            <DateField source="Address" />
+            <TextField source="Balance" />
+            <TextField source="City" />
+            <TextField source="CompanyName" />
+            <TextField source="ContactName" />
+            <TextField source="ContactTitle" />
+            <TextField source="Country" />
+            <TextField source="CreditLimit" />
+            <TextField source="Fax" />
+            {/* <ReferenceField source="Id" reference="s"><TextField source="id" /></ReferenceField> */}
+            <NumberField source="OrderCount" />
+            <TextField source="Phone" />
+            <DateField source="PostalCode" />
+            <TextField source="Region" />
+            <NumberField source="UnpaidOrderCount" />
+            <ReferenceManyField reference="Order" target="CustomerId" addLabel={false}>
+                    <Datagrid>
+                    <TextField source="id" />
+                        <TextField source="AmountTotal" />
+                       <TextField source="Freight" />
+                        <DateField source="OrderDate" />
+                        <DateField source="RequiredDate" />
+                        <TextField source="ShipAddress" />
+                        <TextField source="ShipCity" />
+                        <TextField source="ShipCountry" />
+                        <TextField source="ShipName" />
+                        <TextField source="ShipPostalCode" />
+                        <TextField source="ShipRegion" />
+                        <NumberField source="ShipVia" />
+                        <DateField source="ShippedDate" />
+                    </Datagrid>
+            </ReferenceManyField>
+
+
+        
+        </SimpleShowLayout>
+    </Show>
+);
+    }
