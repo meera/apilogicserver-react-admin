@@ -1,5 +1,6 @@
 const authProvider = {
     login: ({ username, password }) =>  {
+        console.log( 'User name ', username, ' Password ', password);
         if ( username === 'admin' && password === 'p' ) {
             localStorage.setItem('username', username);
             return Promise.resolve();  

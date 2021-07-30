@@ -6,7 +6,7 @@ const Dashboard = () => {
       <CardHeader title="Welcome!"> 
 
       </CardHeader>
-      <CardContent> Welcome to apilogicserver</CardContent>
+      <CardContent> Welcome to APILogicServer Web Dashboard</CardContent>
     </Card>
   )
 }
