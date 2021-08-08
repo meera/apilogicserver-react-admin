@@ -2,7 +2,6 @@ import * as React from "react";
 import { Admin, Resource, ListGuesser, EditGuesser, ShowGuesser } from 'react-admin';
 import jsonServerProvider from 'ra-data-json-server';
 import {CustomerList, CustomerEdit, CustomerShow} from './components/Customer';
-import {EmployeeList} from './components/Employee';
 import {OrderList} from './components/Order';
 
 import jsonapiClient from "ra-jsonapi-client";
