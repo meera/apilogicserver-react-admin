@@ -1,8 +1,9 @@
 import {React} from 'react';
-import { List, Datagrid, DateField, TextField, EmailField, ReferenceField, NumberField, EditButton} from 'react-admin';
+import { List, Datagrid, DateField, TextField, EmailField, ReferenceField, NumberField, EditButton, SimpleShowLayout} from 'react-admin';
 import {
 
     Edit,
+    Show,
     SimpleForm,
     ReferenceInput,
     SelectInput,
@@ -17,7 +18,7 @@ const orderFilters = [
 
 export const OrderList = props => (
     <List filters={orderFilters} {...props}>
-        <Datagrid rowClick="edit">
+        <Datagrid rowClick="show">
             <TextField source="id" />
             <TextField source="AmountTotal" />
             {/* <ReferenceField source="CustomerId" reference="Customers"><TextField source="id" /></ReferenceField>
@@ -38,28 +39,25 @@ export const OrderList = props => (
     </List>
 );
 
-
-export const CustomerEdit = props => (
-    <Edit {...props}>
-        <SimpleForm>
-            <TextInput source="id" />
-            <DateInput source="Address" />
-            <TextInput source="Balance" />
-            <TextInput source="City" />
-            <TextInput source="CompanyName" />
-            <TextInput source="ContactName" />
-            <TextInput source="ContactTitle" />
-            <TextInput source="Country" />
-            <TextInput source="CreditLimit" />
-            <TextInput source="Fax" />
-            <ReferenceInput source="Id" reference="s">
-                <SelectInput optionText="id" />
-            </ReferenceInput>
-            <NumberInput source="OrderCount" />
-            <TextInput source="Phone" />
-            <DateInput source="PostalCode" />
-            <TextInput source="Region" />
-            <NumberInput source="UnpaidOrderCount" />
-        </SimpleForm>
-    </Edit>
+export const OrderShow = props => (
+    <Show {...props}>
+        <SimpleShowLayout>
+            <TextField source="id" />
+            <TextField source="AmountTotal" />
+            <ReferenceField source="CustomerId" reference="Customer"><TextField source="id" /></ReferenceField>
+            <ReferenceField source="EmployeeId" reference="Employee"><TextField source="id" /></ReferenceField>
+            <TextField source="Freight" />
+            <DateField source="OrderDate" />
+            <DateField source="RequiredDate" />
+            <DateField source="ShipAddress" />
+            <TextField source="ShipCity" />
+            <TextField source="ShipCountry" />
+            <TextField source="ShipName" />
+            <DateField source="ShipPostalCode" />
+            <TextField source="ShipRegion" />
+            <NumberField source="ShipVia" />
+            <DateField source="ShippedDate" />
+        </SimpleShowLayout>
+    </Show>
 );
+

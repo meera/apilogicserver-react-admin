@@ -1,12 +1,13 @@
 import { React } from "react";
-import { List,
-    Datagrid,
-    TextField,
-    DateField,
-    NumberField,
-    EditButton,
+import {
+  List,
+  Datagrid,
+  TextField,
+  DateField,
+  NumberField,
+  EditButton,
 } from "react-admin";
-import Grid from '@material-ui/core/Grid';
+import Grid from "@material-ui/core/Grid";
 
 import {
   Edit,
@@ -20,10 +21,10 @@ import {
   SimpleShowLayout,
   ReferenceManyField,
   ShowController,
-  useRecordContext
+  useRecordContext,
 } from "react-admin";
-import Paper from '@material-ui/core/Paper';
-import { Typography } from '@material-ui/core';
+import Paper from "@material-ui/core/Paper";
+import { Typography } from "@material-ui/core";
 
 const customerFilters = [<TextInput source="q" label="Search" alwaysOn />];
 
@@ -71,8 +72,6 @@ const CustomerTitle = ({ record }) => {
   );
 };
 
-
-
 const ShowField = ({ source }) => {
   const record = useRecordContext();
   return record ? (
@@ -91,64 +90,55 @@ export const CustomerShow = (props) => {
   return (
     <Show title={<CustomerTitle />} {...props}>
       <SimpleShowLayout>
-      <Typography variant="h5"   
- component="h5" style={{ margin: "30px 0px 30px" }}>
-  Customer Data:
-  </Typography>
+        <Typography
+          variant="h5"
+          component="h5"
+          style={{ margin: "30px 0px 30px" }}
+        >
+          Customer Data:
+        </Typography>
 
         <Grid container spacing={3} margin={5} m={40}>
-          
-            <ShowField source="id" />
-         
-          
-            <ShowField source="Balance" />
-         
+          <ShowField source="id" />
 
-          
-            <ShowField source="Address" />
-         
+          <ShowField source="Balance" />
 
-        
+          <ShowField source="Address" />
+
           <ShowField source="City" />
-       
-        
+
           <ShowField source="CompanyName" />
-       
-        
+
           <ShowField source="ContactName" />
-       
-        <ShowField source="ContactTitle" />
-        
-<ShowField source="Country" />
 
-<ShowField source="CreditLimit" />
+          <ShowField source="ContactTitle" />
 
-<ShowField source="Fax" />
+          <ShowField source="Country" />
 
+          <ShowField source="CreditLimit" />
 
-<ShowField source="OrderCount" />
+          <ShowField source="Fax" />
 
-<ShowField source="Phone" />
+          <ShowField source="OrderCount" />
 
-<ShowField source="PostalCode" />
+          <ShowField source="Phone" />
 
-<ShowField source="Region" />
-<ShowField source="UnpaidOrderCount" />
-       
-</Grid>
-<hr style={{ margin: "30px 0px 30px" }}/>
-<Typography variant="h5"   
- component="h5">
-  Orders
-  </Typography>
+          <ShowField source="PostalCode" />
 
+          <ShowField source="Region" />
+          <ShowField source="UnpaidOrderCount" />
+        </Grid>
+        <hr style={{ margin: "30px 0px 30px" }} />
+        <Typography variant="h5" component="h5">
+          Orders
+        </Typography>
 
         <ReferenceManyField
           reference="Order"
           target="CustomerId"
           addLabel={false}
         >
-          <Datagrid>
+          <Datagrid rowClick="show">
             <TextField source="id" />
             <TextField source="AmountTotal" />
             <TextField source="Freight" />
