@@ -9,8 +9,11 @@ import {
     SelectInput,
     TextInput,
     DateInput,
-    NumberInput
+    NumberInput,
+    useRecordContext
 } from 'react-admin';
+import { Typography } from "@material-ui/core";
+
 
 const orderFilters = [
     <TextInput source="q" label="Search" alwaysOn />
@@ -39,13 +42,22 @@ export const OrderList = props => (
     </List>
 );
 
+const ShowFullName = ({ source }) => {
+    const record = useRecordContext();
+    return record ? (
+        
+        <Typography variant="body2" component="p">
+          {`${record['FirstName']} ${record['LastName']}`}
+        </Typography>
+    ) : null;
+  };
 export const OrderShow = props => (
     <Show {...props}>
         <SimpleShowLayout>
             <TextField source="id" />
             <TextField source="AmountTotal" />
-            <ReferenceField source="CustomerId" reference="Customer"><TextField source="id" /></ReferenceField>
-            <ReferenceField source="EmployeeId" reference="Employee"><TextField source="id" /></ReferenceField>
+            <ReferenceField source="CustomerId" reference="Customer"><TextField source="ContactName" /></ReferenceField>
+            <ReferenceField source="EmployeeId" reference="Employee"><ShowFullName source="FirstName" /></ReferenceField>
             <TextField source="Freight" />
             <DateField source="OrderDate" />
             <DateField source="RequiredDate" />
